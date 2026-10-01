@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Biblioteca</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>📚 Sistema de Biblioteca</h1>
+
+        <nav>
+            <a href="{{ url_for('inicio') }}">Início</a>
+            <a href="{{ url_for('cadastro') }}">Cadastrar Livro</a>
+            <a href="{{ url_for('livros') }}">Consultar Acervo</a>
+        </nav>
+    </header>
+
+    <main class="inicio">
+
+        <section class="card">
+
+            <h2>Bem-vindo à biblioteca!</h2>
+
+            <p>
+                Este sistema permite cadastrar e consultar
+                livros do acervo da biblioteca.
+            </p>
+
+            <div class="botoes">
+
+                <a class="botao" href="{{ url_for('cadastro') }}">
+                    Cadastrar Livro
+                </a>
+
+                <a class="botao secundario" href="{{ url_for('livros') }}">
+                    Consultar Acervo
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
