@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Editar Livro</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>📚 Sistema de Biblioteca</h1>
+
+        <nav>
+            <a href="{{ url_for('inicio') }}">Início</a>
+            <a href="{{ url_for('cadastro') }}">Cadastrar Livro</a>
+            <a href="{{ url_for('livros') }}">Consultar Acervo</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="formulario">
+
+            <h2>Editar Livro</h2>
+
+            <form method="POST">
+
+                <label for="titulo">
+                    Título do livro:
+                </label>
+
+                <input
+                    type="text"
+                    id="titulo"
+                    name="titulo"
+                    value="{{ livro.titulo }}"
+                    required
+                >
+
+
+                <label for="ano">
+                    Ano de publicação:
+                </label>
+
+                <input
+                    type="number"
+                    id="ano"
+                    name="ano"
+                    value="{{ livro.ano_publicacao }}"
+                >
+
+
+                <label for="id_autor">
+                    Autor:
+                </label>
+
+                <select id="id_autor" name="id_autor" required>
+
+                    {% for autor in autores %}
+
+                    <option
+                        value="{{ autor.id_autor }}"
+                        {% if autor.id_autor == livro.id_autor %}
+                        selected
+                        {% endif %}
+                    >
+                        {{ autor.nome }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <label for="id_categoria">
+                    Categoria:
+                </label>
+
+                <select
+                    id="id_categoria"
+                    name="id_categoria"
+                    required
+                >
+
+                    {% for categoria in categorias %}
+
+                    <option
+                        value="{{ categoria.id_categoria }}"
+                        {% if categoria.id_categoria == livro.id_categoria %}
+                        selected
+                        {% endif %}
+                    >
+                        {{ categoria.nome }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <button type="submit">
+                    Salvar Alterações
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
