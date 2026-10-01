@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Acervo</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>📚 Sistema de Biblioteca</h1>
+
+        <nav>
+            <a href="{{ url_for('inicio') }}">Início</a>
+            <a href="{{ url_for('cadastro') }}">Cadastrar Livro</a>
+            <a href="{{ url_for('livros') }}">Consultar Acervo</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="acervo">
+
+            <h2>📖 Acervo da Biblioteca</h2>
+
+            {% if livros %}
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th>Categoria</th>
+                        <th>Ano</th>
+                        <th>Ações</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for livro in livros %}
+
+                    <tr>
+
+                        <td>{{ livro.id_livro }}</td>
+
+                        <td>{{ livro.titulo }}</td>
+
+                        <td>{{ livro.autor }}</td>
+
+                        <td>{{ livro.categoria }}</td>
+
+                        <td>{{ livro.ano_publicacao }}</td>
+
+                        <td>
+
+                            <a
+                                class="editar"
+                                href="{{ url_for('editar', id=livro.id_livro) }}"
+                            >
+                                Editar
+                            </a>
+
+                            <a
+                                class="excluir"
+                                href="{{ url_for('excluir', id=livro.id_livro) }}"
+                                onclick="return confirm('Tem certeza que deseja excluir este livro?')"
+                            >
+                                Excluir
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+            <p class="vazio">
+                Nenhum livro cadastrado ainda.
+            </p>
+
+            {% endif %}
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
